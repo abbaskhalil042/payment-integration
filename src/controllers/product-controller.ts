@@ -34,7 +34,10 @@ export const createProduct = async (req: Request, res: Response) => {
 
 export const getProducts = async (_req: Request, res: Response) => {
   try {
-    const products = await Product.find({ stock: { $gte: 10 } });
+    // const products = await Product.find({ stock: { $gte: 10, $lt: 5 } });
+    // or
+    const products = await Product.find().where("stock").gte(2).lte(3);
+
     res.json(products);
   } catch (err) {
     res.status(500).json({ error: (err as Error).message });
