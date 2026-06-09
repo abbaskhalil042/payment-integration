@@ -10,4 +10,7 @@ router.post("/register", registerUser);
 router.post("/verify", verifyUser);
 router.post("/login", loginUser);
 
+
+// router.post
+
 export default router;

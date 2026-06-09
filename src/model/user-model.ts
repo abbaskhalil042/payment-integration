@@ -4,6 +4,11 @@ interface Iuser {
   name: string;
   email: string;
   password: string;
+  picture?: string;
+  googleId?: string;
+  provider?: "email" | "google";
+  accessToken?: string;
+  refreshToken?: string;
   isVerified: boolean;
   verificationToken?: string | null;
   resetPasswordToken?: string | null;
@@ -24,6 +29,19 @@ const userSchema = new mongoose.Schema<Iuser>({
   password: {
     type: String,
     required: true,
+  },
+  picture: {
+    type: String,
+    default: null,
+  },
+  googleId: {
+    type: String,
+    default: null,
+  },
+  provider: {
+    type: String,
+    enum: ["email", "google"],
+    default: "email",
   },
   isVerified: {
     type: Boolean,
