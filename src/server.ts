@@ -74,14 +74,14 @@ passport.use(
 );
 
 // function to serialize a user/profile object into the session
-passport.serializeUser(function (user, done) {
-  done(null, user);
+passport.serializeUser(function (user: any, done) {
+  done(null, user?._id);
 });
 
 // function to deserialize a user/profile object into the session
-passport.deserializeUser(async function (id, done) {
+passport.deserializeUser(async function (userInfo: any, done) {
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(userInfo._id);
     if (!user) {
       return done(new Error("User not found"), null);
     }
@@ -124,3 +124,24 @@ app.listen(PORT, async () => {
   await connectDB();
   console.log(`Server is running on port ${PORT}`);
 });
+
+
+
+
+/**
+ * 
+ * // 1. set end time
+const endTime = Date.now() + duration;
+
+// 2. on every tick (every ~1 sec)
+const remaining = endTime - Date.now();
+
+// 3. clamp — never show negative
+const display = Math.max(0, remaining);
+
+// 4. pause — just save remaining
+pausedAt = remaining;
+
+// 5. resume — rebuild endTime
+endTime = Date.now() + pausedAt;
+ */

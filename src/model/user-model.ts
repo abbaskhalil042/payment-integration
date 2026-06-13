@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 interface Iuser {
   name: string;
   email: string;
-  password: string;
+  password?: string; //google user will not have password
   picture?: string;
   googleId?: string;
   provider?: "email" | "google";
